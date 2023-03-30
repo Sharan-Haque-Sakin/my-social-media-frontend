@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
-
 import { FaUserFriends, FaUpload } from "react-icons/fa";
 // import ProfilePic from "../../ProfileImg/profile.png";
 import Cookies from "universal-cookie";
@@ -58,7 +57,7 @@ const Navbar = (props) => {
   };
 
   useEffect(() => {
-    fetch("/posts/getname")
+    fetch("https://mysocialmediabackend.onrender.com/posts/getname")
       .then((data) => {
         return data.json();
       })

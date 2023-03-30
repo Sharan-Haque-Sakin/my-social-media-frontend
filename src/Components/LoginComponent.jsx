@@ -47,7 +47,7 @@ const LoginComponent = () => {
   const OnSubmit = (e) => {
     e.preventDefault();
 
-    fetch("/user/auth/login", {
+    fetch("https://mysocialmediabackend.onrender.com/user/auth/login", {
       method: "POST",
       crossDomain: "true",
       headers: {
