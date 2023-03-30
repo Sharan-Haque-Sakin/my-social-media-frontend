@@ -12,7 +12,7 @@ export default function Post(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:3000/posts/", {
+    fetch("/posts/", {
       method: "POST",
       crossDomain: "true",
       headers: {

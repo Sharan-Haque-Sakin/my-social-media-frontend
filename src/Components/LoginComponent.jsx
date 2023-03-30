@@ -47,7 +47,7 @@ const LoginComponent = () => {
   const OnSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:8000/user/auth/login", {
+    fetch("/user/auth/login", {
       method: "POST",
       crossDomain: "true",
       headers: {
