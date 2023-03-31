@@ -87,6 +87,7 @@ const LoginComponent = () => {
   return (
     <Container>
       <div className="AuthContainer">
+        {console.log(success)}
         {success && navigate("/home")}
 
         <div className="Middle">

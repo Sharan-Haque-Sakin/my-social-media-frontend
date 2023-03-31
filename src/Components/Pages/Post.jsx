@@ -12,7 +12,7 @@ export default function Post(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("https://mysocialmediabackend.onrender.com/posts/", {
+    fetch("https://mysocialmediabackend.onrender.com/posts", {
       method: "POST",
       crossDomain: "true",
       headers: {
@@ -65,7 +65,12 @@ export default function Post(props) {
           placeholder={"What's in your mind?🧐 "}
         ></textarea>
         {/* {console.log(content)} */}
-        <input type="submit" value="Post" className="postBtn" />
+        <input
+          type="submit"
+          value="Post"
+          className="postBtn"
+          onClick={() => console.log(success)}
+        />
       </form>
     </div>
   );
