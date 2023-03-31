@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
+import jwt from "jwt-decode";
+import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import { FaUserFriends, FaUpload } from "react-icons/fa";
 // import ProfilePic from "../../ProfileImg/profile.png";
-import Cookies from "universal-cookie";
 const Nav = styled.nav`
   padding-top: 1rem;
   display: flex;
@@ -43,6 +44,7 @@ const cookies = new Cookies();
 const Navbar = (props) => {
   const [name, setName] = useState("");
   const navigate = useNavigate();
+
   function handleLogOut() {
     cookies.remove("authcookie");
     navigate("/");
@@ -56,29 +58,20 @@ const Navbar = (props) => {
     };
   };
 
-  useEffect(() => {
-    fetch("https://mysocialmediabackend.onrender.com/posts/getname")
-      .then((data) => {
-        return data.json();
-      })
-      .then((jsonData) => {
-        console.log(jsonData);
-        setName(jsonData.userName);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  const myCookie = cookies.get("authcookie");
+
+  const userName = jwt(myCookie);
 
   return (
     <Nav>
+      {console.log(userName.userName)}
       {/* <img
         className="imgNav"
         style={{ borderRadius: "25px", marginLeft: "2rem" }}
         src={ProfilePic}
         alt=""
       /> */}
-      <p style={{ paddingLeft: "2rem", color: "black" }}>{name}</p>
+      <p style={{ paddingLeft: "2rem", color: "black" }}>{userName.userName}</p>
 
       <ItemsContainer>
         <Items>

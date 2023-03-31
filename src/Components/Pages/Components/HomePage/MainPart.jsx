@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Uploads from "./Feeds";
+import Loader from "./Loading";
 
 export default function MainPart() {
   const [Posts, setPosts] = useState();
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     fetch("https://mysocialmediabackend.onrender.com/posts")
       .then((data) => {
@@ -10,6 +12,7 @@ export default function MainPart() {
       })
       .then((jsonData) => {
         setPosts(jsonData);
+        setLoading(true);
       })
       .catch((error) => {
         console.log(error);
@@ -19,7 +22,7 @@ export default function MainPart() {
   return (
     <div className="PostsContainer">
       <div className="hehe" style={{ paddingTop: "2rem" }}>
-        {Posts &&
+        {loading ? (
           Posts.data.map((data, key) => {
             return (
               <Uploads
@@ -30,7 +33,10 @@ export default function MainPart() {
                 date={data.date}
               />
             );
-          })}
+          })
+        ) : (
+          <Loader />
+        )}
       </div>
     </div>
   );
