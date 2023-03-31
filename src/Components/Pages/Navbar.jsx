@@ -62,6 +62,7 @@ const Navbar = (props) => {
         return data.json();
       })
       .then((jsonData) => {
+        console.log(jsonData);
         setName(jsonData.userName);
       })
       .catch((error) => {
